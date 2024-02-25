@@ -1,0 +1,28 @@
+\section{Kernel Trick}
+\begin{mdframed}[style=eqbox]
+$\kappa: \mathcal X \times \mathcal X \rightarrow \mathbb R$ is a \textbf{kernel function} if the following two conditions are fulfilled (with an arbitrary function $f \in L_2(\mathcal X)$):
+\textbf{Positive definite:} $\int_{ \mathcal X \times \mathcal X} f(\mat x) \kappa(\mat x, \mat y) f( \mat y) dx dy \geq 0$\\
+\textbf{Symmetry:}  $ \kappa(\mat x, \mat y) = \kappa(\mat y, \mat x)$
+\end{mdframed}
+%
+\begin{mdframed}[style=eqbox]
+\subsection{Common Kernels (\(a, c, d \geq 0\) and \( \sigma > 0\))}
+\textbf{Linear Kernel:} \(\kappa(\mat x, \mat y) = \mat x^T \mat y + c\)\\
+\textbf{Polynomial Kernel:} \(\kappa(\mat x, \mat y) = (a \mat x^T \mat y + c)^d\)\\
+\textbf{Gaussian Kernel:} \(\kappa(\mat x, \mat y) = \exp \left( -\cfrac{\vert\vert\mat x - \mat y \vert\vert^2}{2 \sigma^2} \right)\)\\
+\textbf{Exponential Kernel:} \( \kappa(\mat x, \mat y) = \exp \left(- \cfrac{\vert\vert \mat x - \mat y \vert\vert}{2 \sigma^2} \right)\)
+\end{mdframed}
+%
+\begin{mdframed}[style=eqbox]
+\subsection{Properties}
+Given the kernels $\kappa_1$ and $\kappa_2$, $c > 0$ and an arbitrary function $f$ the following combinations are valid kernels:
+\vspace*{-8pt}\begin{align*}
+  c \kappa_1(\mat x) && c + \kappa_1(\mat x) && f(\mat x) f(\mat y)\\
+  \kappa_1(\mat x) \kappa_2(\mat x) && \kappa_1(\mat x) + \kappa_2(\mat x)
+\end{align*}\vspace*{-16pt}\\
+\textbf{Mercer's Theorem:}
+Let $\kappa$ be a kernel, then there exists functions $\phi_i$ and a $\lambda_i \geq 0$ such that:
+\vspace*{-8pt}\begin{align*}
+\kappa(\mat x, \mat y) = \sum_{i=1}^{\infty} \lambda_i \phi_i(\mat x) \phi_i(\mat y)
+\end{align*}
+\end{mdframed}
