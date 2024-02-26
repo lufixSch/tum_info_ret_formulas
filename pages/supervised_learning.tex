@@ -30,7 +30,7 @@
 \vspace*{-4pt}\begin{align*}
 \lim_{N,k \to \infty, \frac{k}{N} \to 0} \hat{f}_k(x) = \operatorname E[Y \vert X = x]
 \end{align*}
-\end{mdframed}
+\end{mdframed}\newpage
 %
 \begin{mdframed}[style=eqbox]
 \subsection{Logistic regression}
@@ -65,4 +65,42 @@
 %
 \begin{mdframed}[style=eqbox]
 \subsection{Support Vector machine}
+\vspace*{-6pt}\begin{align*}
+  \mathcal{H}_{\mat w, b} = \{ \mat x \in \mathbb{R}^p \vert \mat w^\top \mat x - b = 0 \} && \delta(\mat x, \mathcal{H}_{\mat w, b}) = \frac{\mat w^\top \mat x - b}{\vert \vert \mat w \vert\vert}
+\end{align*}
+\vspace*{-16pt}\begin{align*}
+  \mathcal{H}_{\pm} = \{ \mat x \in \mathbb{R}^p \vert \mat w^\top \mat x - b = \pm 1 \} && \delta(\mathcal{H}_- , \mathcal H_+ ) = \frac{2}{\vert \vert \mat w \vert\vert}
+\end{align*}
+\vspace*{-16pt}\begin{align*}
+  \max \frac{2}{\vert \vert \mat w \vert\vert} &\mathrm{~or}& \min \frac{1}{2} \vert \vert \mat w \vert\vert^2 && \mathrm{s.t.~} y_i( \mat w^\top \mat x_i - b) \geq 1 \quad \forall i \in \{1, \ldots, n\}
+\end{align*}\vspace*{-12pt}\\
+\textbf{Applying Lagrange duality:}
+\vspace*{-8pt}\begin{align*}
+\min_{\mat w, b, \lambda \geq 0} L(\mat w, b, \mat \lambda) && L(\dots) = \frac{1}{2}\vert \vert \mat w \vert\vert^2 - \sum_{i=1}^{n} \lambda_i (y_i(\mat w^\top \mat x_i - b) - 1)
+\end{align*}
+\vspace*{-16pt}\begin{align*}
+\max_{\mat \lambda} \left(\sum_i \lambda_i - \frac{1}{2} \mat \lambda^\top \mat H \mat \lambda\right) && \text{s.t.} \quad \mat \lambda_i \geq 0, \sum_i \lambda_i y_i = 0
+\end{align*}\vspace*{-10pt}\\
+\small{Where $\mat H$ is defined with $h_{ij} = y_i y_j \mat x^\top_i \mat x_j}$
+\subsubsection{Soft margin SVM}
+\vspace*{-10pt}\begin{align*}
+  \min_{\mat w, b, \mat \xi} \frac{1}{2} \vert\vert \mat w \vert\vert^2 + c \sum_{i=1}^{n} \xi_i && \text{s.t. } y_i (\mat w^\top \mat x_i - b) \geq 1 - \xi_i,~ \xi_i \geq 0
+\end{align*}
+\vspace*{-10pt}\begin{align*}
+L(\mat w, b, \mat \xi, \mat \lambda, \mat \mu) &= \frac{1}{2} \vert\vert \mat w \vert\vert^2 + c \sum_i \xi_i \\[ - 0.5em]
+&- \sum_i \lambda_i (y_i (\mat w^\top \mat x_i - b) - 1 + \xi_i) - \sum_i \mu_i \xi_i
+\end{align*}\vspace*{-10pt}\begin{align*}
+  \max_{\mat \lambda} \left(\sum_i \lambda_i - \frac{1}{2} \mat \lambda^\top \mat H \mat \lambda\right) && \text{s.t.} \quad 0 \leq \mat \lambda_i \leq c, \sum_i \lambda_i y_i = 0
+\end{align*}\vspace*{-6pt}
+\begin{align*}
+b^* &= \frac{1}{N_{\mathrm{supp}}} \sum_{i \in \mathrm{supp}} \left( (\mat w^*)^\top \mat x_i - y_i \right)
+\end{align*}
+\subsubsection{Kernel SVM}
+All vector products are replaced by the kernel $\kappa(\mat x,\mat y)$
+\vspace*{-4pt}\begin{align*}
+  h_{ij} = y_iy_j \kappa(\mat x_i, \mat x_j) && \mat w^\top \mat x_i \neq \kappa(\mat w, \mat x_i)
+\end{align*}\vspace*{-14pt}
+\begin{align*}
+b^* &= \frac{1}{N_{\mathrm{supp}}} \sum_{i \in \mathrm{supp}} \left( \sum_{j \in \mathrm{supp}} \left(\lambda_j y_j \kappa(\mat x_i, \mat x_j)\right) - y_i \right)
+\end{align*}
 \end{mdframed}

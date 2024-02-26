@@ -31,12 +31,40 @@ $g(x) \circ f(x) \implies \mat J_{g \circ f} (\mat x) = \mat J_g(f(\mat x)) \cdo
 %  T_{CM} : x &\mapsto E[\Theta \mid X = x] = \int \theta f_{\Theta \mid X}(\theta \mid x) \text{d}\theta\\
 %  f_{\Theta \mid X}(\theta \mid x) &= \frac{f_{X \mid \Theta}(x \mid \theta) f_\Theta(\theta)}{f_X(x)}\\
 %\end{align*}
+\subsubsection*{Curse of dimensionality}
+Given a random vector $\mat X \in \mathbb R^p$ with the $i$-th element $X_i$ i.i.d with $Pr(X_i^2 \leq \beta) \leq 1$
+\vspace*{-4pt}\begin{align*}
+Pr(\vert \vert X \vert\vert_2^2 \geq \beta ) \geq 1 - Pr(X_1^2 < \beta)^p
+\end{align*}
+In a $p$-dimensional space, $N^p$ samples are needed to achieve similar results as $N$ samples in a one-dimensional space.
 \end{mdframed}
 %
 \begin{mdframed}[style=eqbox]
 \subsection{Convexity}
+\textbf{Convex set:} $\mathcal C$, $\mat x, \mat y \in \mathcal C, t \in [0,1]: t x + (1-t)y \in C$\\
+\textbf{Convex function:} $f: C \to \mathbb R$, $f(t x + (1-t)y) \leq tf(x) + (1-t)f(y)$\\
+\textbf{Concave function:} $g: C \to \mathbb R$, $g(t x + (1-t)y) \geq tg(x) + (1-t)g(y)$
+\subsubsection{Properties:}
+Given two convex functions $f$ and $g$, the following functions are also convex:
+\vspace*{-8pt}\begin{align*}
+  h = \max (f, g) && h = f + g && h = g \circ f \text{ \small{if $g$ is non-decreasing}}
+\end{align*}
 \end{mdframed}
 %
 \begin{mdframed}[style=eqbox]
 \subsection{Non-Linear Optimization}
+\vspace*{-6pt}\begin{align*}
+  \min_{\mat z} f(\mat z) &&\text{s.t.} \quad c_i(\mat z) = 0 \quad i \in \mathcal E && c_i(\mat z) \geq 0 \quad i \in \mathcal I
+\end{align*}\vspace*{-14pt}\\
+\textbf{Lagrange-function:} $L(\mat z, \mat \lambda) = f(\mat z) - \sum_i \lambda_i c_i(\mat z)$
+\subsubsection{Karush-Kuhn-Tucker-Conditions}
+\vspace*{-8pt}\begin{align*}
+  \nabla_{\mat z} L(\mat z^*, \mat \lambda^*) = 0 && \lambda_i^* c_i(\mat z^*) = 0\\
+  \lambda_i^* \geq 0 && c_i(\mat z^*) \geq 0 && \text{for } i \in \mathcal I\\
+  && c_i(\mat z^*) = 0 && \text{for } i \in \mathcal E
+\end{align*}
+\subsubsection{Lagrangia Duality}
+\vspace*{-6pt}\begin{align*}
+  g(\mat \lambda) = \inf_{\mat z} L(\mat z, \mat \lambda) && \max_{\mat \lambda} g(\mat \lambda) \quad \text{s.t.} \quad \lambda_i \geq 0
+\end{align*}
 \end{mdframed}

@@ -10,7 +10,9 @@ $\kappa: \mathcal X \times \mathcal X \rightarrow \mathbb R$ is a \textbf{kernel
 \textbf{Linear Kernel:} \(\kappa(\mat x, \mat y) = \mat x^T \mat y + c\)\\
 \textbf{Polynomial Kernel:} \(\kappa(\mat x, \mat y) = (a \mat x^T \mat y + c)^d\)\\
 \textbf{Gaussian Kernel:} \(\kappa(\mat x, \mat y) = \exp \left( -\cfrac{\vert\vert\mat x - \mat y \vert\vert^2}{2 \sigma^2} \right)\)\\
-\textbf{Exponential Kernel:} \( \kappa(\mat x, \mat y) = \exp \left(- \cfrac{\vert\vert \mat x - \mat y \vert\vert}{2 \sigma^2} \right)\)
+\textbf{Exponential Kernel:} \( \kappa(\mat x, \mat y) = \exp \left(- \cfrac{\vert\vert \mat x - \mat y \vert\vert}{2 \sigma^2} \right)\)\\
+\textbf{Radial basis function (RBF) Kernel:} Gaussian Kernel\\
+\textbf{Sigmoid Kernel:} \(\kappa(\mat x, \mat y) = \tanh \left(\gamma \mat x^T \mat y - \delta \right)
 \end{mdframed}
 %
 \begin{mdframed}[style=eqbox]
