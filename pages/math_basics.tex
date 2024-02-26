@@ -12,19 +12,21 @@ A matrix $A \in \mathcal R^n$ has eigenvectors if $A$ is square and not singular
 \end{align*}\vspace*{-16pt}\\
 \textbf{Positive definite:} \(x^\top A x > 0 \quad \forall x \neq 0\)\\
 \textbf{Positive semidefinite:} \(x^\top A x \geq 0 \quad \forall x \neq 0\)\\
-\textbf{Jacoobi-Matrix:} \(J_f(\mathbf x) = \cfrac{d f(\mathbf x)}{d\mathbf x} = \left[\cfrac{df_i(\mathbf x)}{dx_j}\right]_{i = 1\dots m; j = 1\dots n}\)\\
-\textbf{Hessian-Matrix:} \(H_f(\mathbf x) = \cfrac{d^2 f(\mathbf x)}{d\mathbf x^2} = \left[\cfrac{\partial^2 f_i(\mathbf x)}{\partial x_j\partial x_k}\right]_{i = 1\dots m; j, k = 1\dots n}\)
+\textbf{Jacoobi-Matrix:} \(\mat J_f(\mat x) = \cfrac{d f(\mat x)}{d\mat x} = \left[\cfrac{df_i(\mathbf x)}{dx_j}\right]_{i = 1\dots m; j = 1\dots n}\)\\
+$g(x) \circ f(x) \implies \mat J_{g \circ f} (\mat x) = \mat J_g(f(\mat x)) \cdot \mat J_f(\mat x)$\\[0.35em]
+\textbf{Hessian-Matrix:} \(\mat H_f(\mat x) = \cfrac{d^2 f(\mat x)}{d\mat x^2} = \left[\cfrac{\partial^2 f_i(\mat x)}{\partial x_j\partial x_k}\right]_{i = 1\dots m; j, k = 1\dots n}\)
 \end{mdframed}
 %
 \begin{mdframed}[style=eqbox]
 \subsection{Statistics}
 \textbf{Normal Distribution:}
-\(f_X(x) &= \cfrac{1}{\sqrt{2\pi \sigma^2}} \exp\left(-\cfrac{(x-\mu)^2}{2\sigma^2}\right)\)
+\(f_X(x) = \cfrac{1}{\sqrt{2\pi \sigma^2}} \exp\left(-\cfrac{(x-\mu)^2}{2\sigma^2}\right)\)
 \textbf{Bernoulli Distribution:} \(f_X(x) = p^x (1 - p)^{1-x}\) \(x \in \{0, 1\}\)
 \subsubsection*{Maximum likelihood estimation}
 \vspace*{-10pt}\begin{align*}
   L(x;\theta) = \prod_{i=1}^N f_{X_i}(x_i; \theta) && l(x;\theta) = \sum_{i=1}^N \log f_{X_i}(x_i; \theta)
-\end{align*}
+\end{align*}\vspace*{-10}\\
+\textbf{Cross entropy:} $H(p,q) = -\sum_{i=1}^{n} p_i \log q_i$
 %\subsubsection*{Bayes Estimation (Conditional Mean)}
 %\vspace*{-4pt}\begin{align*}
 %  T_{CM} : x &\mapsto E[\Theta \mid X = x] = \int \theta f_{\Theta \mid X}(\theta \mid x) \text{d}\theta\\

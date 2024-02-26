@@ -1,8 +1,21 @@
 \section{Unsupervised Learning}
 \begin{mdframed}[style=eqbox]
 \subsection{K-Means}
+\vspace*{-6pt}\begin{align*}
+  \mathcal F = \left\{f: \mathbb R^p \to \{\mat c_1, \ldots, \mat c_k\} \subset \mathbb R^p \right\} && L(\mat X, f(\mat X)) = \vert\vert \mat X - \mat f(\mat X) \vert\vert^2
+\end{align*}\vspace*{-12pt}\\
+\small{Where $\mathbb R^p$ is the feature space. $\mat c_i$ is the center of cluster $i$.}\\
+Because $f$ maps to a finite set, the volume of the set distribution is zero.\\
+\textbf{Algorithms:} Lloyd's algorithm, MaxQueen's algorithm
 \end{mdframed}
 %
 \begin{mdframed}[style=eqbox]
 \subsection{Principle Component Analysis}
+\vspace*{-6pt}\begin{align*}
+  \mathcal F = \left\{f: \mathbb R^p \to \mathbb R^k \subset \mathbb R^p \right\} && L(\mat X, f(\mat X)) = \vert\vert \mat X - \mat U_k \mat U_k^\top\mat X \vert\vert_2^2
+\end{align*}\vspace*{-12pt}\\
+\small{Where $\mathbb R^p$ is the feature space. And $f(\mat X) =\mat U_k^\top \mat X$ is a (orthogonal) projection on to the subspace $\mathbb R^k$.}\\
+\textbf{Principle components:} $\mat S = \mat U_k^\top \mat X = \mat \Sigma_k \mat V_k^\top$
+\subsubsection{Kernel PCA}
+
 \end{mdframed}

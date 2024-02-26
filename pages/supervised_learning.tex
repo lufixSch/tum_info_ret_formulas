@@ -1,11 +1,66 @@
 \section{Supervised Learning}
 %
 \begin{mdframed}[style=eqbox]
+\textbf{Expected Prediction Error:} $\operatorname{EPE(f)} = \operatorname E \left[ L(Y,f(X)) \right]$
+\vspace*{-8pt}\begin{align*}
+  f(x) = \operatorname{argmin}_{f \in \mathcal F} \operatorname{EPE}(f) \approx \operatorname{argmin}_{f \in \mathcal F} \frac{1}{n} \sum_{i=1}^{n} L(y_i, f(x_i)) = \hat{f}(x)
+\end{align*}\vspace*{-10pt}\\
+\textbf{Quadratic Loss:} $L_2(Y,f(X)) = (Y-f(X))^2$\\
+\textbf{Absolute Loss ($l_1$-loss):} $L_1(Y,f(X)) = \vert Y-f(X) \vert$
+\vspace*{-4pt}\begin{align*}
+  f_2(x) = \operatorname E_{Y \vert X = x}[Y] && f_1(x) = \operatorname{median}_{Y \vert X = x}[Y]
+\end{align*}\vspace*{-12pt}\\
+\textbf{Generalization error:} $G_N(f) = \operatorname{EPE}(f) - \frac{1}{N} \sum_{i=1}^{N} L(y_i, f(x_i))$
+\end{mdframed}
+%
+\begin{mdframed}[style=eqbox]
+\subsection{Linear regression}
+\vspace*{-6pt}\begin{align*}
+\mathcal{F} = \left\{f(\mat x) = \theta_0 + \sum_{k = 1}^p \theta_k x_k \biggr\vert \theta_k \in \mathbb R, p \in \mathbb{N}\right\}
+\end{align*}\vspace*{-10pt}\\
+\small{Where $x_k$ is the $k$th element of the vector $\mat x$}
+\end{mdframed}
+%
+\begin{mdframed}[style=eqbox]
+\subsection{K-nearest Neighbors}
+\vspace*{-6pt}\begin{align*}
+\hat{f}_k(x) = \frac{1}{k} \sum_{i \in N_k(x)} y_i \quad \forall i \mathrm{~s.t.~} x_i \in N_k(x)
+\end{align*}\vspace*{-10pt}\\
+\small{Where $N_k(x)$ is the set of the $k$ nearest neighbors of $x$}
+\vspace*{-4pt}\begin{align*}
+\lim_{N,k \to \infty, \frac{k}{N} \to 0} \hat{f}_k(x) = \operatorname E[Y \vert X = x]
+\end{align*}
+\end{mdframed}
+%
+\begin{mdframed}[style=eqbox]
 \subsection{Logistic regression}
+\vspace*{-6pt}\begin{align*}
+  \mathcal{F} = \{f(\mat x) = \mat w^\top \mat x + b &~\vert~ \mat w \in \mathbb R^p, b \in \mathbb R\}\\
+  L_{0,1}(Y, f(X)) = \begin{cases}
+    1 & \text{if } Y f(X) \leq 0\\
+    0 & \text{otherwise}
+  \end{cases}&~
+  l(Y, f(X)) = \log \left(1 + e^{-Y f(X)}\right)
+\end{align*}\vspace*{-12pt}\\
+\small{$f$ could be an arbitrary function, but usually $f$ is chosen as defined above.}
+\begin{align*}
+  Pr(Y = y \vert \mat x) = \exp( - l(y, f(\mat x))) = \frac{1}{1 + e^{-y f(\mat x)}} = \sigma(y f(\mat x))
+\end{align*}
+\textbf{Regularization:} $\tilde{l}(y, f(\mat x)) = l(y, f(\mat x)) + \lambda \left(\vert\vert \mat w \vert\vert^2 + b^2\right)$
 \end{mdframed}
 %
 \begin{mdframed}[style=eqbox]
 \subsection{Feedforward Neural Network}
+\vspace*{-6pt}\begin{align*}
+  f: \mathbb{R}^p \to \mathbb R^r && x \mapsto \sigma_l \circ \varphi_{\mat w_l} \circ \cdots \circ \sigma_1 \circ \varphi_{\mat w_1}(x)\\
+  \varphi_{\mat w}: \mathbb R^p \to \mathbb R^m \quad \mat x \mapsto \mat W \mat x && \sigma: \mat x \mapsto [\sigma(x_1), \ldots, \sigma(x_m)]^\top
+\end{align*}\vspace*{-14pt}\\
+\small{Where $m$ is the number of neurons in the layer and $p$ is the number of input features/neurons from the previous layer.}\\
+\textbf{Rectified Linear Unit (ReLU):} $\sigma(x) = \max(0, x)$\\
+\textbf{Update rule:} $\mat W_{j} \gets \mat W_{j} - \alpha \pi_j^{-1}\left( \cfrac{d}{d \mat W_j} L(\mat y_i, f(\mat x_i))\right)^\top$\\
+\textbf{Softmax:} $\mat x \mapsto \left(\sum_{\mat x} \exp(x_i)\right)^{-1} [\exp{(x_1)}, \ldots, \exp{(x_C)}]^\top$\\
+\textbf{Cross entropy:} $H(p,q) = -\sum_{i=1}^{n} p_i \log q_i$; $L(f(\mat x), \mat y_c) = - log(f(\mat x)_c)$\\[0.25em]
+\small{Where $c$ is the correct class in a multiclass classification problem with $C$ classes}
 \end{mdframed}
 %
 \begin{mdframed}[style=eqbox]
