@@ -46,6 +46,17 @@
 \begin{align*}
   Pr(Y = y \vert \mat x) = \exp( - l(y, f(\mat x))) = \frac{1}{1 + e^{-y f(\mat x)}} = \sigma(y f(\mat x))
 \end{align*}
+\subsubsection{Statistical Approach}
+\begin{align*}
+  \mat w_{ML} = \operatorname{argmax}_{\mat w} L(\mat w) = \operatorname{argmax}_{\mat w} Pr(\mat y \vert \mat x, \mat w) \sim \operatorname{argmin}_{\mat w} - \log Pr(\mat y \vert \mat x, \mat w)
+\end{align*}
+\vspace*{-16pt}\begin{align*}
+   Pr(\mat y \vert \mat X, \mat w) = \prod_{i = 1}^n Pr(y_i \vert \mat x_i, \mat w) = \prod_{i = 1}^n \sigma(\mat w^\top \mat x_i)^{y_i} (1 - \sigma(\mat w^\top \mat x_i))^{1 - y_i}
+\end{align*}
+\vspace*{-8pt}\begin{align*}
+\mat w_{t + 1} = (\mat X \mat B \mat X^\top)^{ - 1} \mat X \mat B \mat r_t && \mat r_t = \mat X^\top \mat w_t - \mat B^{-1} (\sigma(\mat X^\top \mat w_t) - \mat y)\\
+\mat B = \operatorname*{diag}(\sigma(\mat w^\top \mat x_i)(1 - \sigma(\mat w^\top \mat x_i))) && H = \nabla_{\mat w} L(\mat w) = \mat X \mat B \mat X^\top
+\end{align*}
 \textbf{Regularization:} $\tilde{l}(y, f(\mat x)) = l(y, f(\mat x)) + \lambda \left(\vert\vert \mat w \vert\vert^2 + b^2\right)$
 \end{mdframed}
 %
