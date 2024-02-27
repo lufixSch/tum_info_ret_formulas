@@ -1,8 +1,7 @@
+\section{Math Basics}
 \begin{mdframed}[style=redbox]
   i.i.d: independent and identically distributed
 \end{mdframed}
-
-\section{Math Basics}
 \begin{mdframed}[style=eqbox]
 \subsubsection*{Eigenvectors: \(A x = \lambda x\)}
 A matrix $A \in \mathcal R^n$ has eigenvectors if $A$ is square and not singular (\(\det (A) \neq 0\)).
@@ -13,8 +12,25 @@ A matrix $A \in \mathcal R^n$ has eigenvectors if $A$ is square and not singular
 \textbf{Positive definite:} \(x^\top A x > 0 \quad \forall x \neq 0\)\\
 \textbf{Positive semidefinite:} \(x^\top A x \geq 0 \quad \forall x \neq 0\)\\
 \textbf{Jacoobi-Matrix:} \(\mat J_f(\mat x) = \cfrac{d f(\mat x)}{d\mat x} = \left[\cfrac{df_i(\mathbf x)}{dx_j}\right]_{i = 1\dots m; j = 1\dots n}\)\\
-$g(x) \circ f(x) \implies \mat J_{g \circ f} (\mat x) = \mat J_g(f(\mat x)) \cdot \mat J_f(\mat x)$\\[0.35em]
-\textbf{Hessian-Matrix:} \(\mat H_f(\mat x) = \cfrac{d^2 f(\mat x)}{d\mat x^2} = \left[\cfrac{\partial^2 f_i(\mat x)}{\partial x_j\partial x_k}\right]_{i = 1\dots m; j, k = 1\dots n}\)
+$g(x) \circ f(x) \implies \mat J_{g \circ f} (\mat x) = \mat J_g(f(\mat x)) \cdot \mat J_f(\mat x)$\\[0.25em]
+$g(\mat x) = \mat W x \implies \mat J_{g \circ f} (\mat x) = \mat W \cdot \mat J_f(\mat x)$\\[0.35em]
+\textbf{Hessian-Matrix:} \(\mat H_f(\mat x) = \cfrac{d^2 f(\mat x)}{d\mat x^2} = \left[\cfrac{\partial^2 f(\mat x)}{\partial x_j\partial x_k}\right]_\substack{i = 1\dots m;\\ j, k = 1\dots n}\)\\[-0.5em]
+\small{Is symmetric - $\mat H_f(\mat x) = \mat J(\nabla f(\mat x))$}\\
+\end{mdframed}
+%
+\begin{mdframed}[style=eqbox]
+\subsection{Projection}
+Given a subspace $\mathbb R^n \subset \mathbb R^p$ with the basis $\mat U$, the orthogonal projector onto $R^n$ is $\mat P = \mat U \mat U^\top$.
+\vspace*{-6pt}\begin{align*}
+  \mat P^2 = \mat P && \mat P \mat P^\top = \mat P^\top \mat P = \mat I
+\end{align*}
+\subsubsection{Orthogonality Principle ($\min \left[\mid\mid \underbar{y} - \mat{X} \underbar{t} \mid\mid^2\right]$)}
+\vspace*{-4pt}
+  \begin{align*}
+    \mat{y} - \mat{X}\mat{t} \perp \text{range}[\mat{X}] &\implies \mat{y} - \mat{X}\mat{t} \in \text{ker}[\mat{X}^T]\\
+    \mat{X}^T(\mat{y} - \mat{X}\mat{t}) = \mat{0} &\implies \mat{X}^T \mat{y} = \mat{X}^T \mat{X} \mat{t}\\
+  \end{align*}\vspace*{-24pt}\\
+  \small{if $N \geq \text{rank}[\mat{X}]$ (All columns of $\mat{X}$ are independent, $(\mat{X}^T \mat{X})^{-1}$ exists)}
 \end{mdframed}
 %
 \begin{mdframed}[style=eqbox]
@@ -43,7 +59,8 @@ In a $p$-dimensional space, $N^p$ samples are needed to achieve similar results 
 \subsection{Convexity}
 \textbf{Convex set:} $\mathcal C$, $\mat x, \mat y \in \mathcal C, t \in [0,1]: t x + (1-t)y \in C$\\
 \textbf{Convex function:} $f: C \to \mathbb R$, $f(t x + (1-t)y) \leq tf(x) + (1-t)f(y)$\\
-\textbf{Concave function:} $g: C \to \mathbb R$, $g(t x + (1-t)y) \geq tg(x) + (1-t)g(y)$
+\textbf{Concave function:} $g: C \to \mathbb R$, $g(t x + (1-t)y) \geq tg(x) + (1-t)g(y)$\\
+If the Hessian is positive semidefinite e.g all entries $H_{ij} \geq 0$ (second derivative of a function is positive) the function is convex.
 \subsubsection{Properties:}
 Given two convex functions $f$ and $g$, the following functions are also convex:
 \vspace*{-8pt}\begin{align*}

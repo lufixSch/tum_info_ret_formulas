@@ -108,6 +108,16 @@
 %	beforeskip=0\baselineskip,
 %	afterskip=0\baselineskip]{subsection}
 
+\makeatletter
+\def\@maketitle{
+	\begin{center}
+		{\rmfamily\Large\mdseries\@title}\\[0.5em]
+		{\sffamily\large\@author}\\[0.5em]
+		{\rmfamily\large\mdseries\@date}
+	\end{center}\vspace*{1em}
+}
+\makeatother
+
 %# Commands -----------------------------------------------------------------------
 % Matrix in Mathmode
 \newcommand{\mat}[1]{\mathbf{#1}}
